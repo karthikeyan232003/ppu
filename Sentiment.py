@@ -54,10 +54,6 @@ class Sentiment:
                     maxx = score  
                     cd = sentiment
             return cd 
-        except ArithmeticError:
+        except:
             return None
-obj = Sentiment()
-A = "This drug has worsened my pain and left me in diarrhoea"
-text = obj.clean_and_truncate_text(A)
-model2 = obj.analyze_sentiment_berttweet(text)
-print(model2)
+

@@ -574,11 +574,11 @@ def go_to_chatbot():
     data3 = request.form['fb']
     data4 = request.form['rate']
     sentiment_me = analyze_sentiment_berttweet(cleaned_review)
-    query = "CALL INSERT_DRUGS('{}','{}','{}','{}')".format(data1,data2,sentiment_me['label'],int(data4)*2).upper()
+    '''query = "CALL INSERT_DRUGS('{}','{}','{}','{}')".format(data1,data2,sentiment_me['label'],int(data4)*2).upper()
     cursor.execute(query)
     PT = "UPDATE LOGIN_COUNT SET FEEDBACK = 'Y' WHERE EMAIL = '{}'".format(foo).upper()
     cursor.execute(PT)
-    conn.commit()
+    conn.commit()'''
     global isGuest 
     isGuest = 0
     return render_template("chatbot.html",is_guest=1,name=name,email=email,phone_number=phone_number,bp=bp,heart=heart,diabetes=diabetes,other=other)

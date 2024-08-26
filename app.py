@@ -573,7 +573,9 @@ def go_to_chatbot():
     data2 = request.form['cd']
     data3 = request.form['fb']
     data4 = request.form['rate']
+    print(data3)
     sentiment_me = analyze_sentiment_berttweet(data3)
+    print(sentiment_me)
     '''query = "CALL INSERT_DRUGS('{}','{}','{}','{}')".format(data1,data2,sentiment_me['label'],int(data4)*2).upper()
     cursor.execute(query)
     PT = "UPDATE LOGIN_COUNT SET FEEDBACK = 'Y' WHERE EMAIL = '{}'".format(foo).upper()

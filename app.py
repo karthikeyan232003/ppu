@@ -20,7 +20,7 @@ headers = {
 }
 
 
-def analyze_sentiment_berttweet(self,txt):
+def analyze_sentiment_berttweet(txt):
         try:
             text = txt
             data = {

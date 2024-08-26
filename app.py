@@ -3,7 +3,6 @@ from flask import Flask,render_template,request,jsonify,flash
 import smtplib
 from email.mime.text import MIMEText
 import pandas as pd
-import Sentiment as st
 from googletrans import Translator
 import langid
 from find_nearest import find_nearest_sentence

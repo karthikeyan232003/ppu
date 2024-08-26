@@ -19,6 +19,36 @@ api_url = f"https://api-inference.huggingface.co/models/{model_name}"
 headers = {
     "Authorization": f"Bearer {api_key}"
 }
+
+
+def analyze_sentiment_berttweet(self,txt):
+        try:
+            text = txt
+            data = {
+                "inputs": text
+            }
+            response = requests.post(api_url, headers=headers, json=data)
+            label_mapping = {
+                "LABEL_0": "Negative",
+                "LABEL_1": "Neutral",
+                "LABEL_2": "Positive"
+            }
+
+            # Get the response data
+            result = response.json()[0]
+
+            # Map the labels to their corresponding sentiment types
+            maxx = 0
+            cd = "neutral"
+            for item in result:
+                sentiment = label_mapping[item['label']]
+                score = item['score']
+                if(score>maxx):
+                    maxx = score  
+                    cd = sentiment
+            return cd 
+        except:
+            return None
 suggester = 1
 isGuest = 0
 hi="no"
@@ -544,9 +574,7 @@ def go_to_chatbot():
     data2 = request.form['cd']
     data3 = request.form['fb']
     data4 = request.form['rate']
-    obj = st.Sentiment()
-    cleaned_review = obj.clean_and_truncate_text(data3)
-    sentiment_me = obj.analyze_sentiment_berttweet(cleaned_review)
+    sentiment_me = analyze_sentiment_berttweet(cleaned_review)
     query = "CALL INSERT_DRUGS('{}','{}','{}','{}')".format(data1,data2,sentiment_me['label'],int(data4)*2).upper()
     cursor.execute(query)
     PT = "UPDATE LOGIN_COUNT SET FEEDBACK = 'Y' WHERE EMAIL = '{}'".format(foo).upper()

@@ -7,6 +7,18 @@ import Sentiment as st
 from googletrans import Translator
 import langid
 from find_nearest import find_nearest_sentence
+api_key = "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"
+
+# The model you want to use
+model_name = "cardiffnlp/twitter-roberta-base-sentiment"
+
+# The API endpoint for the model
+api_url = f"https://api-inference.huggingface.co/models/{model_name}"
+
+# The headers for the request, including the API key
+headers = {
+    "Authorization": f"Bearer {api_key}"
+}
 suggester = 1
 isGuest = 0
 hi="no"
